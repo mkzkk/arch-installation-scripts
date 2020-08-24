@@ -21,7 +21,7 @@ while grep -q "Username or password was incorrect" arch.sh ; do
     echo "Incorrect password, try again"
     echo ; read -p 'Enter installer password: ' password
     echo
-    curl --user "zkkm@pm.me:${password}" 'http://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh'
+    curl -O --user "zkkm@pm.me:${password}" 'http://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh'
 done
 
 sh arch.sh

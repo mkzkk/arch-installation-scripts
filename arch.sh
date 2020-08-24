@@ -25,5 +25,3 @@ while grep -q "Username or password was incorrect" arch.sh ; do
 done
 
 sh arch.sh
-echo
-exit 0

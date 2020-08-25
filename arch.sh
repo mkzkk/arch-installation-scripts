@@ -15,7 +15,6 @@ else
     curl -O --user "zkkm@pm.me:${pass}" 'https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh'
 fi
 
-echo
 while grep -q "Username or password was incorrect" arch.sh ; do
     echo ; echo "Incorrect password, try again"
     read -p 'Enter installer password: ' password

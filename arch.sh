@@ -7,7 +7,7 @@ fi
 pass="$1"
 
 if [[ -z "$pass" ]] ; then
-    read -p 'Enter installer password: ' password
+    echo ; read -p 'Enter installer password: ' password
     echo
     curl -O --user "zkkm@pm.me:${password}" 'https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh'
 else
@@ -17,7 +17,7 @@ fi
 
 echo
 while grep -q "Username or password was incorrect" arch.sh ; do
-    echo "Incorrect password, try again"
+    echo ; echo "Incorrect password, try again"
     read -p 'Enter installer password: ' password
     echo
     curl -O --user "zkkm@pm.me:${password}" 'https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh'

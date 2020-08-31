@@ -7,7 +7,7 @@ fi
 pass="$1"
 
 if [[ -z "$pass" ]] ; then
-    echo ; read -p 'Enter installer password: ' password
+    read -p 'Enter installer password: ' password
     echo
     curl -O --user "zkkm@pm.me:${password}" 'https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/nx.sh'
 else
@@ -15,7 +15,8 @@ else
     curl -O --user "zkkm@pm.me:${pass}" 'https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/nx.sh'
 fi
 
-while grep -q "Username or password was incorrect" nx.sh ; do
+echo
+while grep -q "Username or password was incorrect" arch.sh ; do
     echo ; echo "Incorrect password, try again"
     read -p 'Enter installer password: ' password
     echo
@@ -23,3 +24,4 @@ while grep -q "Username or password was incorrect" nx.sh ; do
 done
 
 sh nx.sh
+

@@ -3,13 +3,14 @@
     echo -e "\nNo internet connectivity detected\nConnect to a network and try again\nAborting installer...\n" &&
     exit 0
 
-[ "$1" ] &&
-    echo &&
+if [ "$*" ] ; then
+    echo
     curl -O --user "zkkm@pm.me:$1" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/nx.sh"
-[ -z "$1" ] &&
-    read -p "Enter installer password: " password &&
-    echo &&
+elif [ -z "$*" ] ; then
+    read -p "Enter installer password: " password
+    echo
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/nx.sh"
+fi
 
 echo
     

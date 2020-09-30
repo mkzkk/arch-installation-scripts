@@ -3,13 +3,13 @@
     echo -e "\nNo internet connectivity detected\nConnect to a network and try again\nAborting installer...\n" &&
     exit 0
 
-if [ "$*" ] ; then
+if [ "$*" ]; then
     echo
-    curl -O --user "zkkm@pm.me:$1" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh"
-elif [ -z "$*" ] ; then
+    curl -O --user "zkkm@pm.me:$1" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$1" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
+elif [ -z "$*" ]; then
     read -p "Enter installer password: " password
     echo
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh"
+    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 fi
 
 echo
@@ -18,7 +18,7 @@ while grep -q "Username or password was incorrect" arch.sh ; do
     echo -e "\nIncorrect password, try again"
     read -p "Enter installer password: " password
     echo
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh"
+    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 done
 
 sh arch.sh

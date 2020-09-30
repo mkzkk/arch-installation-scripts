@@ -15,11 +15,11 @@ fi
 
 echo
     
-while grep -q "Username or password was incorrect" arch.sh ; do
+while grep -q "Username or password was incorrect" nx.sh ; do
     echo -e "\nIncorrect password, try again"
     read -p "Enter installer password: " password
     echo
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/nx.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/nx.sh"
 done
 
-sh arch.sh
+sh nx.sh

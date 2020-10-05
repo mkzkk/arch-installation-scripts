@@ -23,6 +23,8 @@ while grep -q "Username or password was incorrect" arch.sh ; do
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 done
 
-chmod +x arch.sh
-[ "$2" ] && ./arch.sh template
-[ -z "$2" ] && ./arch.sh
+[ "$2" ] &&
+    chmod +x arch.sh &&
+    ./arch.sh template
+[ -z "$2" ] &&
+    sh arch.sh

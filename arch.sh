@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ "$*" ]; then
-    if echo "$2" | grep 'arch'; then
+    if echo "$1" | grep 'arch'; then
         script='arch.sh'
-    elif echo "$2" | grep 'nx\|nextcloud'; then
+    elif echo "$1" | grep 'nx\|nextcloud'; then
         script='nx.sh'
-    elif echo "$2" | grep 'usb\|recover'; then
+    elif echo "$1" | grep 'usb\|recover'; then
         script='liveusbrecovery.sh'
     else
         echo -e "\n\e[1;36mSelect a script to run\e[0m"
@@ -21,7 +21,7 @@ if [ "$*" ]; then
         [ "$scriptoption" = 3 ] && script='liveusbrecovery.sh'
     fi
     echo
-    curl -O --user "zkkm@pm.me:$1" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$1" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
+    curl -O --user "zkkm@pm.me:$2" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$2" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
 else
     read -rp $'\n\e[1;36mEnter installer password: \e[0m' password
     echo -e "\n\n\e[1;36mSelect a script to run\e[0m"

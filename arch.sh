@@ -1,11 +1,11 @@
 #!/bin/sh
 
 if [ "$*" ]; then
-    if echo "$1" | grep 'arch'; then
+    if echo "$1" | grep -q 'arch'; then
         script='arch.sh'
-    elif echo "$1" | grep 'nx\|nextcloud'; then
+    elif echo "$1" | grep -q 'nx\|nextcloud'; then
         script='nx.sh'
-    elif echo "$1" | grep 'usb\|recover'; then
+    elif echo "$1" | grep -q 'usb\|recover'; then
         script='liveusbrecovery.sh'
     else
         echo -e "\n\e[1;36mSelect a script to run\e[0m"

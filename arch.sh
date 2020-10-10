@@ -19,7 +19,7 @@ if [ "$*" ]; then
         echo -e "\t2) Live USB Recovery"
             until [[ "$scriptoption" = [123] ]]; do
                 read -n1 -p '> ' scriptoption
-                    [[ "$scriptoption" != [12] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+                    [[ "$scriptoption" != [123] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
             done
         [ "$scriptoption" = 1 ] && script='arch.sh'
         [ "$scriptoption" = 2 ] && script='nx.sh'

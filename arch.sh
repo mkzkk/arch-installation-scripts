@@ -6,11 +6,11 @@
     exit 0
 
 if [ "$*" ]; then
-    if echo "$2" | grep arch; then
+    if echo "$2" | grep 'arch'; then
         script='arch.sh'
-    elif echo "$2" | grep nextcloud; then
+    elif echo "$2" | grep 'nx\|nextcloud'; then
         script='nx.sh'
-    elif echo "$2" | grep recovery; then
+    elif echo "$2" | grep 'usb\|recover'; then
         script='liveusbrecovery.sh'
     else
         echo -e "\n\e[1;36mSelect a script to run\e[0m"

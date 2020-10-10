@@ -9,7 +9,7 @@ if [ "$*" ]; then
     echo
     curl -O --user "zkkm@pm.me:$1" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$1" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 else
-    read -p "Enter installer password: " password
+    read -rp $'\n\e[1;36mEnter installer password: \e[0m' password
     echo
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 fi
@@ -18,7 +18,7 @@ echo
 
 while grep -q "Username or password was incorrect" arch.sh ; do
     echo -e "\nIncorrect password, try again"
-    read -p "Enter installer password: " password
+    read -rp $'\n\e[1;36mEnter installer password: \e[0m' password
     echo
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/arch.sh" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/arch.sh"
 done

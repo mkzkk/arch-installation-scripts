@@ -49,7 +49,5 @@ done
 chmod +x $script
 
 [ "$3" ] &&
-    ./$script template
-
-[ -z "$3" ] &&
+    ./$script template ||
     ./$script

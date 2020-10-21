@@ -34,16 +34,16 @@ else
         [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
         [ "$SCRIPT" = 2 ] && SCRIPT='nx.sh'
         [ "$SCRIPT" = 3 ] && SCRIPT='liveusbrecovery.sh'
-    read -rp $'\n\n\e[1;36mEnter installer password: \e[0m' password
+    read -rp $'\n\n\e[1;36mEnter installer password: \e[0m' PASSWORD
     echo    
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
+    curl -O --user "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$PASSWORD" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 fi
 
 while grep -q "Username or password was incorrect" $SCRIPT ; do
     echo -e "\n\e[1;31mIncorrect password, try again\e[0m"
-    read -rp $'\n\e[1;36mEnter installer password: \e[0m' password
+    read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
     echo
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
+    curl -O --user "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$PASSWORD" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 done
 
 sh $SCRIPT "$3"

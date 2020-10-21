@@ -2,48 +2,51 @@
 
 if [ "$*" ]; then
     if echo "$1" | grep -q "a[^ ]*h"; then
-        script='arch.sh'
+        SCRIPT='arch.sh'
     elif echo "$1" | grep -q "n[^ ]*d\|nx"; then
-        script='nx.sh'
+        SCRIPT='nx.sh'
     elif echo "$1" | grep -q "u[^ ]*b\|r[^ ]*r\|r[^ ]*y"; then
-        script='liveusbrecovery.sh'
+        SCRIPT='liveusbrecovery.sh'
     else
         echo -e "\n\e[1;36mSelect a script to run\e[0m"
         echo -e "\t1) Arch Installer"
         echo -e "\t2) Nextcloud Server Installer"
         echo -e "\t3) Live USB Recovery"
-            until [[ "$scriptoption" = [123] ]]; do
-                read -n1 -p '> ' scriptoption
-                    [[ "$scriptoption" != [123] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+            until [[ "$SCRIPT" = [123] ]]; do
+                read -n1 -p '> ' SCRIPT
+                    [[ "$SCRIPT" = [123] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
             done ; echo
-        [ "$scriptoption" = 1 ] && script='arch.sh'
-        [ "$scriptoption" = 2 ] && script='nx.sh'
-        [ "$scriptoption" = 3 ] && script='liveusbrecovery.sh'
+        [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
+        [ "$SCRIPT" = 2 ] && SCRIPT='nx.sh'
+        [ "$SCRIPT" = 3 ] && SCRIPT='liveusbrecovery.sh'
     fi
     echo
-    curl -O --user "zkkm@pm.me:$2" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$2" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
+    curl -O --user "zkkm@pm.me:$2" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$2" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 else
     echo -e "\n\e[1;36mSelect a script to run\e[0m"
         echo -e "\t1) Arch Installer"
         echo -e "\t2) Nextcloud Server Installer"
         echo -e "\t3) Live USB Recovery"
-            until [[ "$scriptoption" = [123] ]]; do
-                read -n1 -p '> ' scriptoption
-                    [[ "$scriptoption" != [123] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+            until [[ "$SCRIPT" = [123] ]]; do
+                read -n1 -p '> ' SCRIPT
+                    [[ "$SCRIPT" != [123] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
             done
-        [ "$scriptoption" = 1 ] && script='arch.sh'
-        [ "$scriptoption" = 2 ] && script='nx.sh'
-        [ "$scriptoption" = 3 ] && script='liveusbrecovery.sh'
+        [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
+        [ "$SCRIPT" = 2 ] && SCRIPT='nx.sh'
+        [ "$SCRIPT" = 3 ] && SCRIPT='liveusbrecovery.sh'
     read -rp $'\n\n\e[1;36mEnter installer password: \e[0m' password
     echo    
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
+    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 fi
 
-while grep -q "Username or password was incorrect" $script ; do
+while grep -q "Username or password was incorrect" $SCRIPT ; do
     echo -e "\n\e[1;31mIncorrect password, try again\e[0m"
     read -rp $'\n\e[1;36mEnter installer password: \e[0m' password
     echo
-    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
+    curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
+done
+
+sh $SCRIPT "$3"
 done
 
 sh $script "$3"

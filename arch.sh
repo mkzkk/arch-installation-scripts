@@ -46,6 +46,4 @@ while grep -q "Username or password was incorrect" $script ; do
     curl -O --user "zkkm@pm.me:$password" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$script" || curl -O --user "zkkm@pm.me:$password" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$script"
 done
 
-chmod +x $script
-
-./$script "$3"
+sh $script "$3"

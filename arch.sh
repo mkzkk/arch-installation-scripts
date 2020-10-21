@@ -47,6 +47,3 @@ while grep -q "Username or password was incorrect" $SCRIPT ; do
 done
 
 sh $SCRIPT "$3"
-done
-
-sh $script "$3"

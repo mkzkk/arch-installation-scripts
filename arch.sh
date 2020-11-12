@@ -11,7 +11,7 @@ if [ "$*" ]; then
         echo -e "\n\e[1;36mSelect a script to run\e[0m"
         echo -e "\t1) Arch Installer"
         echo -e "\t2) Nextcloud Server Installer"
-        echo -e "\t3) Rescue USB"
+        echo -e "\t3) USB Rescue"
             until [[ "$SCRIPT" = [123] ]]; do
                 read -n1 -p '> ' SCRIPT
                     [[ "$SCRIPT" = [123] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
@@ -26,10 +26,10 @@ else
     echo -e "\n\e[1;36mSelect a script to run\e[0m"
         echo -e "\t1) Arch Installer"
         echo -e "\t2) Nextcloud Server Installer"
-        echo -e "\t3) Live USB Recovery"
+        echo -e "\t3) USB Rescue"
             until [[ "$SCRIPT" = [123] ]]; do
                 read -n1 -p '> ' SCRIPT
-                    [[ "$SCRIPT" != [123] ]] && echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+                    [[ "$SCRIPT" = [123] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
             done
         [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
         [ "$SCRIPT" = 2 ] && SCRIPT='nx.sh'

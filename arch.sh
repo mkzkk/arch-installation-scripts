@@ -23,7 +23,7 @@ if [ "$*" ]; then
     if [ "$2" ]; then
         PASSWORD="$2"
     else
-        read -rp $'\n\n\e[1;36mEnter installer password: \e[0m' PASSWORD
+        read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
     fi
 else
     echo -e "\n\e[1;36mSelect a script to run\e[0m"

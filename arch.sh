@@ -39,7 +39,7 @@ fi
     curl -sO -u "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -sO -u "zkkm@pm.me:$PASSWORD" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 
 while ! grep -q '#!/bin/bash' $SCRIPT; do
-    echo -e "\n\e[1;31mIncorrect password, try again\e[0m"
+    echo -e "\t\e[1;31mIncorrect password, try again\e[0m"
     read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
     echo
     curl -sO -u "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT" || curl -sO -u "zkkm@pm.me:$PASSWORD" "https://us.cloudamo.com/remote.php/dav/files/zkkm@pm.me/$SCRIPT"

@@ -20,7 +20,11 @@ if [ "$*" ]; then
         [ "$SCRIPT" = 2 ] && SCRIPT='nx.sh'
         [ "$SCRIPT" = 3 ] && SCRIPT='rescue.sh'
     fi
-    PASSWORD="$2"
+    if [ "$2" ]; then
+        PASSWORD="$2"
+    else
+        read -rp $'\n\n\e[1;36mEnter installer password: \e[0m' PASSWORD
+    fi
 else
     echo -e "\n\e[1;36mSelect a script to run\e[0m"
         echo -e "\t1) Arch Installer"

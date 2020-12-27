@@ -17,7 +17,7 @@ if [ "$*" ]; then
         echo -e "\t4) USB Rescue"
             until [[ "$SCRIPT" = [1-4] ]]; do
                 read -n1 -p '> ' SCRIPT
-                    [[ "$SCRIPT" = [1-4] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+                    [[ "$SCRIPT" = [1-4] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 4\e[0m"
             done ; echo
         [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
         [ "$SCRIPT" = 2 ] && SCRIPT='airgap.sh'
@@ -37,7 +37,7 @@ else
         echo -e "\t4) USB Rescue"
             until [[ "$SCRIPT" = [1-4] ]]; do
                 read -n1 -p '> ' SCRIPT
-                    [[ "$SCRIPT" = [1-4] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 3\e[0m"
+                    [[ "$SCRIPT" = [1-4] ]] || echo -e "\n\n\e[1;31mInvalid selection, type an option from 1 to 4\e[0m"
             done ; echo
         [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
         [ "$SCRIPT" = 2 ] && SCRIPT='airgap.sh'

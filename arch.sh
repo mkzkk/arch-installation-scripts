@@ -17,10 +17,11 @@ LIST_SCRIPTS() {
             read -n1 -p '> ' SCRIPT
                 [[ "$SCRIPT" = [1-4] ]] || echo -e '\n\n\e[1;31mInvalid selection, type an option from 1 to 4\e[0m'
         done ; echo
-    [ "$SCRIPT" = 1 ] && SCRIPT='arch.sh'
-    [ "$SCRIPT" = 2 ] && SCRIPT='airgap.sh'
-    [ "$SCRIPT" = 3 ] && SCRIPT='nx.sh'
-    [ "$SCRIPT" = 4 ] && SCRIPT='rescue.sh'
+    if [ "$SCRIPT" = "1" ]; then SCRIPT='arch.sh'
+    elif [ "$SCRIPT" = "2" ]; then SCRIPT='airgap.sh'
+    elif [ "$SCRIPT" = "3" ]; then SCRIPT='nx.sh'
+    elif [ "$SCRIPT" = "4" ]; then SCRIPT='rescue.sh'
+    fi
 }
 # Function to download script from webdav server
 DOWNLOAD_SCRIPT() { echo

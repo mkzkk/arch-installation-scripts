@@ -2,13 +2,13 @@
 
 # Detect network connectivity
 if ! ping -qc1 -W3 8.8.8.8 > /dev/null; then
-    echo -e '\n\t\e[31mNo internet connection detected, run \e[1;35mnmtui\e[0m\e[31m in the terminal if connecting through wifi\e[0m\n'
+    echo -e '\n\t\e[31mNo internet connection detected, run \e[1;35mnmtui\e[0m\e[31m or use \e[1;35miwd\e[0m\e[31m in the terminal if connecting through wifi\e[0m\n'
     exit 1
 fi
 
 # Function to list all script options
-LIST_SCRIPTS() {
-    echo -e '\n\e[1;36mSelect a script to run\e[0m'
+LIST_SCRIPTS() { echo
+    echo -e '\e[1;36mSelect a script to run\e[0m'
     echo -e '\t1) Arch Installer'
     echo -e '\t2) Air-gapped Crypto Wallet Generator'
     echo -e '\t3) Nextcloud Server Installer'
@@ -49,12 +49,11 @@ else
     read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
 fi
 
-DOWNLOAD_SCRIPT
-
-while ! grep -q '#!/bin/bash' "$SCRIPT"; do
+while :; do
+    DOWNLOAD_SCRIPT
+    grep -q '#!/bin/bash' "$SCRIPT" && break
     echo -e '\t\e[1;31mIncorrect password, try again\e[0m'
     read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
-    DOWNLOAD_SCRIPT
 done
 
 sh "$SCRIPT"

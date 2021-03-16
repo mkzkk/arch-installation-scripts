@@ -6,7 +6,7 @@ if ! ping -qc1 -W3 8.8.8.8 > /dev/null; then
     exit 1
 fi
 
-# Function to list all choices
+# Function to list all script options
 LIST_SCRIPTS() {
     echo -e '\n\e[1;36mSelect a script to run\e[0m'
     echo -e '\t1) Arch Installer'

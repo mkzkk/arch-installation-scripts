@@ -25,7 +25,7 @@ LIST_SCRIPTS() { echo
 }
 # Function to download script from webdav server
 DOWNLOAD_SCRIPT() { echo
-    curl -sO -u "scripts:$PASSWORD" "http://70.64.30.185:8080/remote.php/dav/files/scripts/$SCRIPT"
+    curl -sO -u "scripts:$PASSWORD" "https://daskap.io/remote.php/dav/files/scripts/$SCRIPT"
     grep -q '#!/bin/bash' "$SCRIPT" || curl -sO -u "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
 }
 

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Detect network connectivity
 if ! ping -qc1 -W3 8.8.8.8 > /dev/null; then
     echo -e '\n\t\e[31mNo internet connection detected, run \e[1;35mnmtui\e[0m\e[31m or use \e[1;35miwd\e[0m\e[31m in the terminal if connecting through wifi\e[0m\n'
@@ -19,14 +18,16 @@ LIST_SCRIPTS() { echo
         done ; echo
     if [ "$SCRIPT" = "1" ]; then SCRIPT='arch.sh'
     elif [ "$SCRIPT" = "2" ]; then SCRIPT='airgap.sh'
-    elif [ "$SCRIPT" = "3" ]; then SCRIPT='nx.sh'
+    elif [ "$SCRIPT" = "3" ]; then SCRIPT='nextcloud.sh'
     elif [ "$SCRIPT" = "4" ]; then SCRIPT='rescue.sh'
     fi
 }
 # Function to download script from webdav server
 DOWNLOAD_SCRIPT() { echo
     curl -sO -u "scripts:$PASSWORD" "https://daskap.io/remote.php/dav/files/scripts/$SCRIPT"
-    grep -q '#!/bin/bash' "$SCRIPT" || curl -sO -u "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
+    if [ -f "$SCRIPT" ] && grep -q '#!/bin/bash' "$SCRIPT"; then :; else
+        curl -sO -u "zkkm@pm.me:$PASSWORD" "https://shared02.opsone-cloud.ch/remote.php/dav/files/zkkm@pm.me/$SCRIPT"
+    fi
 }
 
 # Detect script choice and prompt for webdav password
@@ -34,7 +35,7 @@ if [ "$*" ]; then
     # Assign "$1" as script name
     if grep -q "a[^ ]*h" <<< "$1"; then SCRIPT='arch.sh'
     elif grep -q "a[^ ]*p" <<< "$1"; then SCRIPT='airgap.sh'
-    elif grep -q "n[^ ]*d\|nx" <<< "$1"; then SCRIPT='nx.sh'
+    elif grep -q "n[^ ]*d\|nx" <<< "$1"; then SCRIPT='nextcloud.sh'
     elif grep -q "u[^ ]*b\|r[^ ]*e" <<< "$1"; then SCRIPT='rescue.sh'
     else LIST_SCRIPTS
     fi

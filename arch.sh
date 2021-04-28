@@ -52,18 +52,22 @@ fi
 
 # Download script from webdav server
 while :; do echo
-    curl -sO -u "scripts:$PASSWORD" "https://nx.daskap.io/remote.php/dav/files/scripts/$SCRIPT"
-    if ! [ -f "$SCRIPT" ] && ! grep -q '#!/bin/bash' "$SCRIPT"; then
-        curl -sO -u "scripts:$PASSWORD" "https://cloud.daskap.io/remote.php/dav/files/scripts/$SCRIPT"
-    fi
+    # Use alternate webdav server if first one fails
+    curl -sO -u "scripts:$PASSWORD" "https://nx.daskap.io/remote.php/dav/files/scripts/$SCRIPT" ||
+    curl -sO -u "scripts:$PASSWORD" "https://cloud.daskap.io/remote.php/dav/files/scripts/$SCRIPT"
+    # Run script if successfully connected to webdav server, abort installer otherwise
     if [ -f "$SCRIPT" ] && grep -q '#!/bin/bash' "$SCRIPT"; then
         unset PASSWORD
         sh "$SCRIPT"
+    elif [ -f "$SCRIPT" ] && grep -q 'Username or password was incorrect' "$SCRIPT"; then
+        echo -e '\t\e[1;31mIncorrect password, try again\e[0m'
+        read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
     elif [ -f "$SCRIPT" ] && ! grep -q '#!/bin/bash' "$SCRIPT"; then
         echo -e '\e[1;31mInvalid password or custom script filename, make another selection or try again\e[0m'
         LIST_SCRIPTS
-    else 
-        echo -e '\t\e[1;31mIncorrect password, try again\e[0m'
-        read -rp $'\n\e[1;36mEnter installer password: \e[0m' PASSWORD
+    else
+        echo -e '\e[1;31mError encountered, server may be offline'
+        echo -e 'Aborting script...\e[0m\n'
+        exit 1
     fi
 done

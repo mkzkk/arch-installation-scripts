@@ -60,7 +60,7 @@ while :; do echo
         unset PASSWORD
         sh "$SCRIPT"
     elif [ -f "$SCRIPT" ] && ! grep -q '#!/bin/bash' "$SCRIPT"; then
-        echo -e '\e[31mInvalid custom script filename, make another selection or try again\e[0m'
+        echo -e '\e[1;31mInvalid password or custom script filename, make another selection or try again\e[0m'
         LIST_SCRIPTS
     else 
         echo -e '\t\e[1;31mIncorrect password, try again\e[0m'

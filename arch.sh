@@ -37,7 +37,7 @@ if [ "$*" ]; then
     elif grep -q "a[^ ]*p" <<< "$1"; then SCRIPT='airgap.sh'
     elif grep -q "n[^ ]*d\|nx" <<< "$1"; then SCRIPT='nextcloud.sh'
     elif grep -q "u[^ ]*b\|r[^ ]*e" <<< "$1"; then SCRIPT='rescue.sh'
-    else SCRIPT="$(sed 's/\.sh$//' <<< "$1")"'.sh'
+    else LIST_SCRIPTS
     fi
     # Assign "$2" as password if present
     if [ "$2" ]; then
